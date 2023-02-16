@@ -14,8 +14,8 @@
 let qs2 = document.querySelector(".list-group-item:nth-child(2)");
 qs2.style.backgroundColor = "lightgreen";
 
-// let qs3 = document.querySelector(".list-group-item:nth-child(3)");
-// qs3.style.display = 'none';
+let qs3 = document.querySelector(".list-group-item:nth-child(3)");
+ qs3.style.display = 'none';
 
 let items = document.querySelectorAll('.list-group-item');
 items[1].style.color = "green";
@@ -24,3 +24,4 @@ var odd = document.querySelectorAll('li:nth-child(odd)');
 for(var i=0;i<odd.length;i++){
     odd[i].style.backgroundColor = 'lightGrey';
 }
+
