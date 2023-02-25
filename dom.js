@@ -38,25 +38,28 @@ itemList.addEventListener('click',deleteItem);
 function addItem(e){
   e.preventDefault();
   
-  var newItem = document.getElementById('item').value;
-  var newDesc = document.getElementById('desc').value;
+  var newName = document.getElementById('name').value;
+  var newEmail = document.getElementById('email').value;
+  var newPhone = document.getElementById('phone').value;
 
 let myObj = {
-  item : newItem,
-  desc : newDesc
+  name : newName,
+  email : newEmail,
+  phone : newPhone
 }
 
 let myObj_String = JSON.stringify(myObj);
 
-localStorage.setItem("myObj",myObj_String);
+localStorage.setItem(newEmail,myObj_String);
 
   // localStorage.setItem("itemName",newItem);
   // localStorage.setItem("itemDesc",newDesc);
 
   var li = document.createElement('li');
   li.className = 'list-group-item';
-  li.appendChild(document.createTextNode(newItem));
-  li.appendChild(document.createTextNode(" " + newDesc));
+  li.appendChild(document.createTextNode(newName));
+  li.appendChild(document.createTextNode(" " + newEmail));
+  li.appendChild(document.createTextNode(" " + newPhone));
 
   var deleteBtn = document.createElement('button');
   deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
@@ -88,10 +91,11 @@ function filterItem(e){
   var text = e.target.value.toLowerCase();
   var items = itemList.getElementsByTagName('li');
   Array.from(items).forEach(function(item){
-    var itemName = item.firstChild.textContent;
-    var desc = item.childNodes[1].textContent;
-    itemName = itemName + desc;
-    if(itemName.toLowerCase().indexOf(text) != -1){
+    var name = item.firstChild.textContent;
+    var email = item.childNodes[1].textContent;
+    var phone = item.childNodes[2].textContent;
+    name = name + email + phone;
+    if(name.toLowerCase().indexOf(text) != -1){
       item.style.display = 'block';
 
     }else {
