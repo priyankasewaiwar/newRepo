@@ -40,8 +40,18 @@ function addItem(e){
   
   var newItem = document.getElementById('item').value;
   var newDesc = document.getElementById('desc').value;
-  localStorage.setItem("itemName",newItem);
-  localStorage.setItem("itemDesc",newDesc);
+
+let myObj = {
+  item : newItem,
+  desc : newDesc
+}
+
+let myObj_String = JSON.stringify(myObj);
+
+localStorage.setItem("myObj",myObj_String);
+
+  // localStorage.setItem("itemName",newItem);
+  // localStorage.setItem("itemDesc",newDesc);
 
   var li = document.createElement('li');
   li.className = 'list-group-item';
