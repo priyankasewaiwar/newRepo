@@ -33,7 +33,7 @@ filter.addEventListener('keyup',filterItem);
 
 form.addEventListener('submit', addItem);
 
-itemList.addEventListener('click',deleteItem);
+itemList.addEventListener('click',deleteEditItem);
 
 function addItem(e){
   e.preventDefault();
@@ -80,18 +80,27 @@ localStorage.setItem(newEmail,myObj_String);
 }
 
 
-function deleteItem(e){
+function deleteEditItem(e){
   e.preventDefault();
   if(e.target.classList.contains('delete')){
     if(confirm('Are you sure ?')){
-      var liRem = e.target.parentElement;
-  
+      var liRem = e.target.parentElement;      
       var textVal = liRem.childNodes[2].textContent;
       localStorage.removeItem(textVal);
       itemList.removeChild(liRem);
-      //var textVal = e.target.childNodes[1].textContent;
-      //localStorage.removeItem(textVal);
     }
+  }
+
+  if(e.target.classList.contains('edit')){
+    
+       var liRem = e.target.parentElement;  
+       document.getElementById('name').value = liRem.childNodes[0].textContent;
+       document.getElementById('email').value = liRem.childNodes[2].textContent;
+      document.getElementById('phone').value = liRem.childNodes[4].textContent;
+
+       var textVal = liRem.childNodes[2].textContent;
+       localStorage.removeItem(textVal);
+       itemList.removeChild(liRem);  
   }
 } 
 function filterItem(e){
