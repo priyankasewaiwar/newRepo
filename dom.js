@@ -58,8 +58,10 @@ localStorage.setItem(newEmail,myObj_String);
   var li = document.createElement('li');
   li.className = 'list-group-item';
   li.appendChild(document.createTextNode(newName));
-  li.appendChild(document.createTextNode(" " + newEmail));
-  li.appendChild(document.createTextNode(" " + newPhone));
+  li.appendChild(document.createTextNode(" "));
+  li.appendChild(document.createTextNode(newEmail));
+  li.appendChild(document.createTextNode(" "));  
+  li.appendChild(document.createTextNode(newPhone));
 
   var deleteBtn = document.createElement('button');
   deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
@@ -83,7 +85,12 @@ function deleteItem(e){
   if(e.target.classList.contains('delete')){
     if(confirm('Are you sure ?')){
       var liRem = e.target.parentElement;
+  
+      var textVal = liRem.childNodes[2].textContent;
+      localStorage.removeItem(textVal);
       itemList.removeChild(liRem);
+      //var textVal = e.target.childNodes[1].textContent;
+      //localStorage.removeItem(textVal);
     }
   }
 } 
@@ -92,8 +99,8 @@ function filterItem(e){
   var items = itemList.getElementsByTagName('li');
   Array.from(items).forEach(function(item){
     var name = item.firstChild.textContent;
-    var email = item.childNodes[1].textContent;
-    var phone = item.childNodes[2].textContent;
+    var email = item.childNodes[2].textContent;
+    var phone = item.childNodes[4].textContent;
     name = name + email + phone;
     if(name.toLowerCase().indexOf(text) != -1){
       item.style.display = 'block';
